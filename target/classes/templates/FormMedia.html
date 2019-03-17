@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+	layout:decorator="template2">
+<head>
+<meta charset="UTF-8" />
+<title>Saisie Media</title>
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" href="../static/css/MyStyle.css"
+	th:href="@{/css/MyStyle.css}" />
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Saisie de Media</div>
+			<div class="panel-body ">
+				<form th:action="@{SaveMedia}" method="post"
+				 th:object="${media}"
+					enctype="multipart/form-data">
+					<div class="form-group">
+						<label class="control-label">Num d'inventaire : </label> <input type="text"
+							th:field="*{numDocum}" class="form-control" /> <span
+							class="text-danger" th:errors="*{numDocum}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Titre : </label> <input type="text"
+							th:field="*{titre}" class="form-control" /> <span
+							class="text-danger" th:errors="*{titre}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Date d'acquisition : </label> <input
+							type="date" th:field="*{dateAcquisition}" class="form-control" />
+						<span class="text-danger" th:errors="*{dateAcquisition}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Etat : </label> <input type="text"
+							th:field="*{etat}" class="form-control" /> <span
+							class="text-danger" th:errors="*{etat}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">quantite : </label> <input type="text"
+							th:field="*{quantite}" class="form-control" /> <span
+							class="text-danger" th:errors="*{quantite}"></span>
+					</div>
+
+					<div>
+						<label class="control-label">type de media : </label> <input type="text"
+							th:field="*{typeDeMedia}" class="form-control" /> <span
+							class="text-danger" th:errors="*{typeDeMedia}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Photo : </label> <input type="file"
+							name="picture" class="form-control" /> <span class="text-danger"
+							th:errors="*{photo}"></span>
+					</div>
+					<div>
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

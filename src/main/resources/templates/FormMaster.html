@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+	layout:decorator="template2">
+<head>
+<meta charset="UTF-8" />
+<title>Saisie d'un memoire master</title>
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" href="../static/css/MyStyle.css"
+	th:href="@{/css/MyStyle.css}" />
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Saisie d'un memoire master</div>
+			<div class="panel-body ">
+				<form th:action="@{SaveMaster}" method="post" th:object="${master}"
+					enctype="multipart/form-data">
+					<div class="form-group">
+						<label class="control-label">Num d'inventaire : </label> <input type="text"
+							th:field="*{numDocum}" class="form-control" /> <span
+							class="text-danger" th:errors="*{numDocum}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Titre : </label> <input type="text"
+							th:field="*{titre}" class="form-control" /> <span
+							class="text-danger" th:errors="*{titre}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Date d'acquisition : </label> <input
+							type="date" th:field="*{dateAcquisition}" class="form-control" />
+						<span class="text-danger" th:errors="*{dateAcquisition}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Etat : </label> <input type="text"
+							th:field="*{etat}" class="form-control" /> <span
+							class="text-danger" th:errors="*{etat}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">quantite : </label> <input type="text"
+							th:field="*{quantite}" class="form-control" /> <span
+							class="text-danger" th:errors="*{quantite}"></span>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Annee Universitaire : </label> <input
+							type="text" th:field="*{anneeUniv}" class="form-control" /> <span
+							class="text-danger" th:errors="*{anneeUniv}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Encadrant : </label> <input
+							type="text" th:field="*{encadrant}" class="form-control" />
+						<span class="text-danger" th:errors="*{encadrant}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Etudiant : </label> <input
+							type="text" th:field="*{etudiant}"
+							class="form-control" /> <span class="text-danger"
+							th:errors="*{etudiant}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Nom Master : </label> <input
+							type="text" th:field="*{nomMaster}" class="form-control" /> <span
+							class="text-danger" th:errors="*{nomMaster}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Photo : </label> <input type="file"
+							name="picture" class="form-control" /> <span class="text-danger"
+							th:errors="*{photo}"></span>
+					</div>
+					<div>
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

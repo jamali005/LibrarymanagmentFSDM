@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+	layout:decorator="template2">
+<head>
+<meta charset="UTF-8" />
+<title>Saisie d'une thèse de doctorat</title>
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" href="../static/css/MyStyle.css"
+	th:href="@{/css/MyStyle.css}" />
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Saisie d'une thèse de doctorat</div>
+			<div class="panel-body ">
+				<form th:action="@{SaveDoctorat}" method="post"
+					th:object="${TheseDoctorat}" enctype="multipart/form-data">
+					<div class="form-group">
+						<label class="control-label">Num d'inventaire : </label> <input type="text"
+							th:field="*{numDocum}" class="form-control" /> <span
+							class="text-danger" th:errors="*{numDocum}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Titre : </label> <input type="text"
+							th:field="*{titre}" class="form-control" /> <span
+							class="text-danger" th:errors="*{titre}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Date d'acquisition : </label> <input
+							type="date" th:field="*{dateAcquisition}" class="form-control" />
+						<span class="text-danger" th:errors="*{dateAcquisition}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Etat : </label> <input type="text"
+							th:field="*{etat}" class="form-control" /> <span
+							class="text-danger" th:errors="*{etat}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">quantite : </label> <input type="text"
+							th:field="*{quantite}" class="form-control" /> <span
+							class="text-danger" th:errors="*{quantite}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Mot clé : </label> <input type="text"
+							th:field="*{motcle}" class="form-control" /> <span
+							class="text-danger" th:errors="*{motcle}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Condidat : </label> <input
+							type="text" th:field="*{condidat}" class="form-control" /> <span
+							class="text-danger" th:errors="*{condidat}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">date soutenance : </label> <input
+							type="date" th:field="*{dateSoutnance}" class="form-control" />
+						<span class="text-danger" th:errors="*{dateSoutnance}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">directeur De Recherche : </label> <input
+							type="text" th:field="*{directeurDeRecherche}"
+							class="form-control" /> <span class="text-danger"
+							th:errors="*{directeurDeRecherche}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">laboratoire : </label> <input
+							type="text" th:field="*{laboratoire}" class="form-control" /> <span
+							class="text-danger" th:errors="*{laboratoire}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">resume : </label>
+			 			<TEXTAREA th:field="*{resume}">Resume de doctorat</TEXTAREA>
+				<!--		 	<input type="textarea"
+							th:field="*{resume}" class="form-control" />-->
+						<span class="text-danger" th:errors="*{resume}"></span> 
+					</div>
+					<div class="form-group">
+						<label class="control-label">specialite : </label> <input
+							type="text" th:field="*{specialite}" class="form-control" /> <span
+							class="text-danger" th:errors="*{specialite}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">type Doctorat : </label> <input
+							type="text" th:field="*{typeDoctorat}" class="form-control" /> <span
+							class="text-danger" th:errors="*{typeDoctorat}"></span>
+					</div>
+				<div class="form-group">
+						<label class="control-label">Photo : </label> <input type="file"
+							name="picture" class="form-control" /> <span class="text-danger"
+							th:errors="*{photo}"></span>
+					</div>
+					<div>
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

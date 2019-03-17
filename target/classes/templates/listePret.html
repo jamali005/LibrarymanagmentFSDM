@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+	layout:decorator="template2">
+<head>
+<meta charset="UTF-8" />
+<title>Liste documents</title>
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" href="../static/css/MyStyle.css"
+	th:href="@{/css/MyStyle.css}" />
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container spacer">
+			<table class="table table-striped ">
+				<thead>
+					<tr>
+						<th>DP</th>
+						<th>DRT</th>
+						<th>DRE</th>
+						<th>NI</th>
+						<th>Titre</th>
+						<th>Code adherent</th>
+						<th>Email</th>
+					</tr>
+				</thead>
+				<tr th:each="d:${pagePrets}">
+					<td th:text="${d.datePret}"></td>
+					<td th:text="${d.dateRetourThe}"></td>
+					<td th:text="${d.dateRetourn}"></td>
+					<td th:text="${d.document.numDocum}"></td>
+					<td th:text="${d.document.titre}"></td>
+					<td th:text="${d.adherent.idAdherent}"></td>
+					<td th:text="${d.adherent.username}"></td>
+				</tr>
+			</table>
+		</div>
+		<div class="container">
+			<ul class="nav nav-pills">
+				<li th:each="p:${pages}" th:class="${p==pageCourante}?active:''">
+					<a th:text="${p}" th:href="@{Index(page=${p},motCle=${motCle})}"></a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

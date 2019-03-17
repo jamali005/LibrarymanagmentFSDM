@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+	layout:decorator="template2">
+<head>
+<meta charset="UTF-8" />
+<title>Liste documents</title>
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" href="../static/css/MyStyle.css"
+	th:href="@{/css/MyStyle.css}" />
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container spacer">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Numero Reservation</th>
+						<th>Date Reservation</th>
+						<th>ID document</th>
+						<th>Titre</th>
+						<th>Id adherent</th>
+						<th>Email</th>
+					</tr>
+				</thead>
+				<tr th:each="d:${pageReservations}">
+					<td th:text="${d.numReservation}"></td>
+					<td th:text="${d.dateReservation}"></td>
+					<td th:text="${d.document.numDocum}"></td>
+					<td th:text="${d.document.titre}"></td>
+					<td th:text="${d.adherent.idAdherent}"></td>
+					<td th:text="${d.adherent.username}"></td>
+					<td><a  onclick="return confirm('Etes Vous sûr de vouloir annuler cette réservation')" 
+					th:href="@{annuleReservation(idReserv=${d.numReservation},idDoc=${d.document.numDocum})}">annuler</a></td>
+					<td><a  th:href="@{validReservation(idReserv=${d.numReservation},idDoc=${d.document.numDocum},codeAdh=${d.adherent.idAdherent} )}">Valider</a></td>
+				</tr>
+			</table>
+		</div>
+		<div class="container">
+			<ul class="nav nav-pills">
+				<li th:each="p,status:${pages}"  >
+					<a th:href="@{/Admin/ListeReservation(page=${status.index})}" th:text="${status.index}" ></a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+layout:decorator="template2"
+>
+<head>
+<meta charset="UTF-8" />
+<title>Saisie Documents</title>
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" href="../static/css/MyStyle.css"
+	th:href="@{/css/MyStyle.css}" />
+</head>
+<body>
+<div layout:fragment="content">
+	<div class="col-md-6 col-sm-6 col-xs-12 spacer col-md-offset-3">
+		<div class="panel panel-default ">
+			<div class="panel-heading">Saisie d'un document</div>
+			<div class="panel-body ">
+				<form th:action="@{UpdateDocument}" method="post"
+					th:object="${livre}" enctype="multipart/form-data">
+					<div class="form-group">
+						<label class="control-label">ID : </label> <input type="text"
+							th:field="*{numDocum}" class="form-control" /> <span
+							class="text-danger" th:errors="*{numDocum}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">NE: </label> <input type="text"
+							th:field="*{quantite}" class="form-control" /> <span
+							class="text-danger" th:errors="*{quantite}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Titre : </label> <input type="text"
+							th:field="*{titre}" class="form-control" /> <span
+							class="text-danger" th:errors="*{titre}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Auteur : </label> <input type="text"
+							th:field="*{auteur}" class="form-control" /> <span
+							class="text-danger" th:errors="*{auteur}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Maison d'edition : </label> <input type="text"
+							th:field="*{editeur}" class="form-control" /> <span
+							class="text-danger" th:errors="*{editeur}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">ISBN : </label> <input type="text"
+							th:field="*{isbn}" class="form-control" /> <span
+							class="text-danger" th:errors="*{isbn}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Date d'acquisition : </label> <input
+							type="date" th:field="*{dateAcquisition}" class="form-control" />
+						<span class="text-danger" th:errors="*{dateAcquisition}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Etat : </label> <input type="text"
+							th:field="*{etat}" class="form-control" /> <span
+							class="text-danger" th:errors="*{etat}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Photo : </label> <input type="file"
+							name="picture" class="form-control" /> <img
+							th:src="@{getPhoto(id=${numDocum})}" width="100"
+							height="100" /> <span class="text-danger" th:errors="*{photo}"></span>
+					</div>
+					<div>
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	</div>
+</body>
+</html>

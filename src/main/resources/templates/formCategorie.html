@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+	layout:decorator="template2">
+<head>
+<meta charset="UTF-8" />
+<title>Saisie d'une thèse de doctorat</title>
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" href="../static/css/MyStyle.css"
+	th:href="@{/css/MyStyle.css}" />
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Ajout de catégorie</div>
+			<div class="panel-body ">
+				<form th:action="@{SaveCategorie}" method="post"
+					th:object="${Categorie}" enctype="multipart/form-data">
+					<div class="form-group">
+						<div class="form-group">
+							<label class="control-label">Domaine: </label> 
+							<select th:field="*{domaine}" class="form-control form-group-lg" >
+							    <option value="Informatique">Informatique</option>
+								<option value="Physique" >Physique</option>
+								<option value="Mathématique">Mathématique</option>
+								<option value="Biologie">Biologie</option>
+								<option value="Chimie">Chimie</option>
+								<option value="Giologie">Giologie</option>
+							</select>
+
+							<!-- <input	type="text" th:field="*{domaine}" class="form-control" /> -->
+							<span class="text-danger" th:errors="*{domaine}"></span>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Champ Diciplinaire : </label> <input
+								type="text" th:field="*{champDiciplinaire}" class="form-control" />
+							<span class="text-danger" th:errors="*{champDiciplinaire}"></span>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Côte : </label> <input type="text"
+								th:field="*{cote}" class="form-control" /> <span
+								class="text-danger" th:errors="*{cote}"></span>
+						</div>
+
+						<button type="submit" class="btn btn-primary">Enregitrer</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

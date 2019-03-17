@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+	layout:decorator="template2">
+<head>
+<meta charset="UTF-8" />
+<title>Liste prets noire</title>
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" href="../static/css/MyStyle.css"
+	th:href="@{/css/MyStyle.css}" />
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container spacer">
+			<div class="panel panel-primary">
+				<div class="panel-heading">Listes des resrvations</div>
+				<table class="table ">
+					<thead>
+						<tr>
+							<th>Numero Reservation</th>
+							<th>Date Reservation</th>
+							<th>ID document</th>
+							<th>Titre</th>
+							<th>Id adherent</th>
+							<th>Email</th>
+						</tr>
+					</thead>
+					<tr th:each="d:${pageReservations}">
+						<td th:text="${d.numReservation}"></td>
+						<td th:text="${d.dateReservation}"></td>
+						<td th:text="${d.document.numDocum}"></td>
+						<td th:text="${d.document.titre}"></td>
+						<td th:text="${d.adherent.idAdherent}"></td>
+						<td th:text="${d.adherent.username}"></td>
+						<td><a
+							onclick="return confirm('Etes Vous sûr de vouloir annuler cette réservation')"
+							th:href="@{annuleReservation(idReserv=${d.numReservation},idDoc=${d.document.numDocum})}">annuler</a></td>
+						<td><a
+							th:href="@{validReservation(idReserv=${d.numReservation},idDoc=${d.document.numDocum},codeAdh=${d.adherent.idAdherent} )}">Valider</a></td>
+					</tr>
+				</table>
+			</div>
+			<div class="panel panel-primary">
+				<div class="panel-heading">Listes des prets à retouner
+					aujourd'hui</div>
+				<table class="table ">
+					<thead>
+						<tr>
+							<th>DP</th>
+							<th>DRT</th>
+							<th>DRE</th>
+							<th>NI</th>
+							<th>Titre</th>
+							<th>Code adherent</th>
+							<th>Email</th>
+						</tr>
+					</thead>
+					<tr class="bg-danger" th:each="d:${pagePretsA}">
+						<td th:text="${d.datePret}"></td>
+						<td class="alert-info" th:text="${d.dateRetourThe}"></td>
+						<td th:text="${d.dateRetourn}"></td>
+						<td th:text="${d.document.numDocum}"></td>
+						<td th:text="${d.document.titre}"></td>
+						<td th:text="${d.adherent.idAdherent}"></td>
+						<td th:text="${d.adherent.username}"></td>
+						<!-- <td><a th:href="@{editPret/} + ${d.numPret}">Editer le pret</a></td> -->
+						<td><a
+							th:href="@{ReturnPret(numPret=${d.numPret},codeAdh=${d.adherent.idAdherent},idDoc=${d.document.numDocum})}">Valider
+								le retour</a></td>
+					</tr>
+				</table>
+			</div>
+		
+
+		<div class="panel panel-primary">
+			<div class="panel-heading">Listes des prets en retard</div>
+			<table class="table ">
+				<thead>
+					<tr>
+						<th>DP</th>
+						<th>DRT</th>
+						<th>DRE</th>
+						<th>NI</th>
+						<th>Titre</th>
+						<th>Code adherent</th>
+						<th>Email</th>
+					</tr>
+				</thead>
+				<tr class="bg-danger" th:each="d:${pagePrets}">
+					<td th:text="${d.datePret}"></td>
+					<td class="alert-info" th:text="${d.dateRetourThe}"></td>
+					<td th:text="${d.dateRetourn}"></td>
+					<td th:text="${d.document.numDocum}"></td>
+					<td th:text="${d.document.titre}"></td>
+					<td th:text="${d.adherent.idAdherent}"></td>
+					<td th:text="${d.adherent.username}"></td>
+					<!-- <td><a th:href="@{editPret/} + ${d.numPret}">Editer le pret</a></td> -->
+					<td><a
+						th:href="@{ReturnPret(numPret=${d.numPret},codeAdh=${d.adherent.idAdherent},idDoc=${d.document.numDocum})}">Valider
+							le retour</a></td>
+				</tr>
+			</table>
+		</div>
+</div>
+	</div>
+</body>
+</html>

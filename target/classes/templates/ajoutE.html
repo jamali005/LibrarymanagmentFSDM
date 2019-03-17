@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+	layout:decorator="template2">
+<head>
+<meta charset="UTF-8" />
+<title>Saisir d'adherent</title>
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" href="../static/css/MyStyle.css"
+	th:href="@{/css/MyStyle.css}" />
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Ajouter Etudiant</div>
+			<div class="panel-body">
+				<form th:action="@{/Admin/SaveE}" method="post"
+					th:object="${etudiant}">
+					<div class="form-group">
+						<label class="control-label">Email:</label> <input type="email"
+							th:field="*{username}" class="form-control" /> <span></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Password</label> <input
+							type="password" th:field="*{password}" class="form-control" /> <span></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">CNE:</label> <input type="text"
+							th:field="*{idAdherent}" class="form-control" /> <span></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Prenom:</label> <input type="text"
+							th:field="*{prenom}" class="form-control" /> <span></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Nom:</label> <input type="text"
+							th:field="*{nom}" class="form-control" /> <span></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">telephone:</label> <input type="text"
+							th:field="*{telephone}" class="form-control" /> <span></span>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label">Branche:</label> <input type="text"
+							th:field="*{branche}" class="form-control" /> <span></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Section:</label> <input type="text"
+							th:field="*{section}" class="form-control" /> <span></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Semestre:</label> <input type="text"
+							th:field="*{semestre}" class="form-control" /> <span></span>
+					</div>
+					<div>
+						<button type="submit" class="btn btn-primary">save</button>
+					</div>
+				</form>
+
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>

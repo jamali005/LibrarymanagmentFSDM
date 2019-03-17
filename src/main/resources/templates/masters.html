@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+layout:decorator="template1">
+<head>
+<meta charset="UTF-8"/>
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"
+th:href="@{/css/bootstrap.min.css}"/>
+<link rel="stylesheet" type="text/css" href="../static/css/MyStyle.css"
+th:href="@{/css/MyStyle.css}"/>
+</head>
+<body>
+<div layout:fragment="content">
+		<!-- <div class="container spacer">
+<a th:href="@{form}">Saisir un document</a>
+</div> -->
+		<div class="container spacer">
+			<form th:action="@{/Documents/livres}" method="get">
+				<div class="form-group form-inline">
+					<label>Mot Clé :</label> <input type="text" name="motCle"
+						th:value="${motCle}" />
+					<button type="submit" class="btn btn-primary ">Chercher</button>
+				</div>
+			</form>
+		</div>
+		<div class="panel panel-primary">
+			<div class="panel-heading">Listes Mastes </div>
+			<div class="container spacer">
+				<div th:each="l:${pageMasters}">
+					<div class="col-lg-3">
+						<table class="table">
+							<tr>
+								<td width="300px" height="300px"><img th:src="@{getPhoto(id=${l.numDocum})}" width="100"
+									height="100" />
+									<div class="text-justify"><b>Titre :</b><i th:text="${l.titre}"> </i></div>
+									<div class="text-justify"><b>Etat :</b><i th:text="${l.etat}"></i></div>
+									<div class="text-justify"><b>Année universitaire :</b><i th:text="${l.anneeUniv}"> </i></div>
+									<div class="text-justify"><b>Réalisé par :</b><i th:text="${l.etudiant}"></i></div>
+									<div class="text-justify"><b>Endaré par :</b><i th:text="${l.encadrant}"></i></div>
+									<span th:if="${l.quantite == 0}" class="bg-danger">Non Disponible</span>
+									<div th:unless="${l.quantite == 0}" >
+									<p class="bg-success">Disponible</p>
+									<p><a th:href="@{reserve(id=${l.numDocum})}">Reservation</a></p></div>	
+									</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="container">
+				<ul class="nav nav-pills">
+					<li th:each="p:${pages}" th:class="${p==pageCourante}?active:''">
+						<a th:text="${p}" th:href="@{masters(page=${p},motCle=${motCle})}"></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org" lang="en">
+<meta charset="utf-8" />
+<head>
+<meta charset="UTF-8" />
+<title>Page d'authentification</title>
+<link rel="stylesheet" type="text/css"
+	href="../static/css/styleLogin.css" th:href="@{/css/styleLogin.css}" />
+	<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"
+th:href="@{/css/bootstrap.min.css}"/>
+
+</head>
+<body>
+	<div class="container">
+
+		<header>
+			 <h1>Faculté des Sciences Dhar Mahraz</h1> 
+
+		</header>
+		<section>
+			<div id="container_demo">
+				<!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+				<a class="hiddenanchor" id="toregister"></a> <a class="hiddenanchor"
+					id="tologin"></a>
+				<div id="wrapper">
+					<div id="login" class="animate form">
+				
+						<form th:action="@{/login}" method="post">
+							<h1>Authentification</h1> 
+							<p>
+								<label for="username" class="uname"> Entrez Votre
+									E-mail </label> <input id="username" name="username"
+									required="required" type="text"
+									placeholder=" votremail@mail.com" />
+							</p>
+							<p>
+								<label for="password" class="youpasswd"> Mot de passe </label> <input
+									id="password" name="password" required="required"
+									type="password" placeholder="votre mot de passe" />
+							</p>
+							<p class="keeplogin">
+								<input type="checkbox" name="loginkeeping" id="loginkeeping"
+									value="loginkeeping" /> <label for="loginkeeping">Se souvenir de moi</label>
+							</p>
+							<p class="login button">
+								<input type="submit" value="S'Authentifier"></input> 
+							</p>
+
+						</form>
+						<div th:if="${param.error}" class="text-danger">Nom d'utlisateur ou mot de passe incorrecte</div>
+						<div th:if="${param.logout}" class="text-success">Vous étes déconnectés</div>
+					</div>
+
+					
+
+				</div>
+			</div>
+		</section>
+	</div>
+</body>
+</html>
